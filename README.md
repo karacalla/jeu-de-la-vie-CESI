@@ -4,6 +4,7 @@
 
 *"Le tout est plus que la somme des parties."*
 Plus de 65 ans après sa création, on s'intéresse toujours au Jeu de la Vie pour ses règles de jeux d'une simplicité trompeuse; en effet, à partir de **4 simples règles**, à partir de motifs paraissant aléatoires, nous pouvons créer une infinité de comportements, avec de nouveaux étant découverts jusqu' aujourd'hui.
+
 ---
 
 ### Quel est le vocabulaire?
