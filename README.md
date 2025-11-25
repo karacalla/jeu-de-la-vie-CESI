@@ -1,8 +1,13 @@
 # Le Jeu de la Vie
 
 ## Partie 1: Une introduction
+<div align="center">
 
 *"Le tout est plus que la somme des parties."*
+
+</div>
+
+
 Plus de 65 ans après sa création, on s'intéresse toujours au Jeu de la Vie pour ses règles de jeux d'une simplicité trompeuse; en effet, à partir de **4 simples règles**, à partir de motifs paraissant aléatoires, nous pouvons créer une infinité de comportements, avec de nouveaux étant découverts jusqu' aujourd'hui.
 
 ---
@@ -26,6 +31,10 @@ Par exemple, ici la cellule de centre est entourée par ses voisines.
 
 - **morte**: Le passage d'une cellule vivante à un état **mort**.
 - **naissance**: Le passage d'une cellule morte à un état **vivant**.
+
+### Les règles du Jeu
+  - Une cellule **morte** possédant **exactement 3** cellules voisines **vivantes** *naît* ;
+  - Une cellule **vivante** ne possédant **pas exactement 2 ou 3** cellules voisines **vivantes** *meurt*.
 
 
 
