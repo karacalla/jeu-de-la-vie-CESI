@@ -1,7 +1,7 @@
 #ifndef POO_UI_H
 #define POO_UI_H
 #include <cstdint>
-#include "Matrice.h"
+// #include "Matrice.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
@@ -13,7 +13,7 @@ class Ui {
     const char livingCell = *"▓▓";
     const char deadCell = *"░░";
     public:
-    sf::Window window;
+    sf::RenderWindow window; // changed this
     Ui();
     Ui(uint16_t HEIGHT_, uint16_t WIDTH_);
     ~Ui();
@@ -25,7 +25,7 @@ class Ui {
 
     void createWindow();
     void showWindow();
-    void showMatrice(Matrice mat);
+    // void showMatrice(Matrice mat);
 };
 
 
