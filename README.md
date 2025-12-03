@@ -36,6 +36,13 @@ Par exemple, ici la cellule de centre est entourée par ses voisines.
   - Une cellule **morte** possédant **exactement 3** cellules voisines **vivantes** *naît* ;
   - Une cellule **vivante** ne possédant **pas exactement 2 ou 3** cellules voisines **vivantes** *meurt*.
 
+---
+# Initialisation du programme
+- Ouvrir un **terminal**,
+- `g++ Ui.cpp main.cpp -o JDLV     -lsfml-graphics -lsfml-window -lsfml-system`
+- `./JDLV`
+
+
 
 
 
