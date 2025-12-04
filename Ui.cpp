@@ -5,57 +5,23 @@
 #include <SFML/System.hpp>
 #include <iostream>
 
-Ui::Ui() : HEIGHT(768), WIDTH(1024){
-    std::cout << "[Ui] Constructeur par défaut (HAUTEUR=768, LARGEUR=1024)\n";
+
+Ui::Ui() {
+    std::cout << "[Ui] Constructeur par défaut\n";
+    generateSize();   
     createWindow();
     std::cout << "[Ui] Rejoice! Window created\n";
 }
 
-Ui::Ui(uint16_t HEIGHT_, uint16_t WIDTH_) {
-    std::cout << "[Ui] Constructeur paramétré appelé avec (" << HEIGHT_ << ", " << WIDTH_ << ")\n";
+// cleaned this up
 
-    if (false) {
-        std::cout << "[Ui] Taille customisée déclenchée";
-            // nous avons supprimé le régulateur de taille minimum car nous avons
-            //décidés d'utiliser un autre protocole
-            // Nous l'intégrerons une fois que nous arrivons à
-            // faire Ui et Parse marcher en parallèle
-    } else {
-        this->HEIGHT = HEIGHT_;
-        this->WIDTH = WIDTH_;
-    }
-
-    std::cout << "[Ui] Taille finale : H=" << this->HEIGHT << " W=" << this->WIDTH << "\n";
-    createWindow();
-}
 
 Ui::~Ui() {
     std::cout << "[Ui] Destructeur appelé\n";
 }
 
-void Ui::setSize(uint16_t HEIGHT_, uint16_t WIDTH_) {
-    std::cout << "[Ui] setSize(" << HEIGHT_ << ", " << WIDTH_ << ")\n";
+// cleaned this up too 
 
-    if (false) {
-        // voir ligne 19
-    } else {
-        this->HEIGHT = HEIGHT_;
-        this->WIDTH = WIDTH_;
-    }
-
-    std::cout << "[Ui] Nouvelle taille : H=" << this->HEIGHT << " W=" << this->WIDTH << "\n";
-    createWindow();
-}
-
-const uint16_t Ui::getHeight() const {
-    std::cout << "[Ui] getHeight() -> " << this->HEIGHT << "\n";
-    return this->HEIGHT;
-}
-
-const uint16_t Ui::getWidth() const {
-    std::cout << "[Ui] getWidth() -> " << this->WIDTH << "\n";
-    return this->WIDTH;
-}
 
 void Ui::createWindow() {
     std::cout << "[Ui] Création de la fenêtre... H=" << this->HEIGHT << " W=" << this->WIDTH << "\n";
@@ -79,7 +45,7 @@ void Ui::showWindow() {
     while (window.isOpen()) {
 
         while (auto eventOpt = window.pollEvent()) {
-            std::cout << "[Ui] Événement reçu\n";
+            //removed bloat
 
             const sf::Event& event = *eventOpt;
 
@@ -87,7 +53,7 @@ void Ui::showWindow() {
                 std::cout << "[Ui] Événement : fermeture de la fenêtre\n";
                 window.close();
             } else {
-                std::cout << "[Ui] Événement : autre\n";
+                //removed bloat
             }
         }
 
@@ -95,4 +61,34 @@ void Ui::showWindow() {
     }
 
     std::cout << "[Ui] Sortie de la boucle showWindow() (fenêtre fermée)\n";
+}
+
+
+void Ui::generateSize() {
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
+
+    unsigned int screenWidth  = desktop.size.x;
+    unsigned int screenHeight = desktop.size.y;
+
+    // DIMENSIONS DE LA MATRICE à intégrer
+    unsigned int longueur = 10;
+    unsigned int largeur = 5;
+
+
+
+
+    WIDTH  = static_cast<uint16_t>(screenWidth  * 0.8f);
+    HEIGHT  = static_cast<uint16_t>(screenHeight  * 0.8f);
+
+    if (longueur > largeur) {
+        HEIGHT = static_cast<uint16_t>((float)largeur / longueur * WIDTH);
+    } else {
+
+        WIDTH = static_cast<uint16_t>((float)longueur / largeur * HEIGHT);
+    }
+
+    CARREAU = WIDTH / largeur;
+
+    std::cout << "[Ui] Taille magique de l'écran: H=" << HEIGHT 
+              << " W=" << WIDTH << " C=" << CARREAU << "\n";
 }

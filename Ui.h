@@ -9,9 +9,10 @@
 class Ui {
 
     private:
-    uint16_t HEIGHT, WIDTH;
+    uint16_t HEIGHT, WIDTH, CARREAU;
     const char livingCell = *"▓▓";
     const char deadCell = *"░░";
+    void generateSize();
 
 
     public:
