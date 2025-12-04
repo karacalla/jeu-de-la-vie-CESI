@@ -14,10 +14,12 @@ Ui::Ui() : HEIGHT(768), WIDTH(1024){
 Ui::Ui(uint16_t HEIGHT_, uint16_t WIDTH_) {
     std::cout << "[Ui] Constructeur paramétré appelé avec (" << HEIGHT_ << ", " << WIDTH_ << ")\n";
 
-    if (HEIGHT_ < 400 || WIDTH_ < 400) {
-        std::cout << "[Ui] Taille trop petite, retour aux valeurs par défaut\n";
-        this->HEIGHT = 768;
-        this->WIDTH = 1024;
+    if (false) {
+        std::cout << "[Ui] Taille customisée déclenchée";
+            // nous avons supprimé le régulateur de taille minimum car nous avons
+            //décidés d'utiliser un autre protocole
+            // Nous l'intégrerons une fois que nous arrivons à
+            // faire Ui et Parse marcher en parallèle
     } else {
         this->HEIGHT = HEIGHT_;
         this->WIDTH = WIDTH_;
@@ -34,10 +36,8 @@ Ui::~Ui() {
 void Ui::setSize(uint16_t HEIGHT_, uint16_t WIDTH_) {
     std::cout << "[Ui] setSize(" << HEIGHT_ << ", " << WIDTH_ << ")\n";
 
-    if (HEIGHT_ < 400 || WIDTH_ < 400) {
-        std::cout << "[Ui] Taille trop petite, retour aux valeurs par défaut\n";
-        this->HEIGHT = 768;
-        this->WIDTH = 1024;
+    if (false) {
+        // voir ligne 19
     } else {
         this->HEIGHT = HEIGHT_;
         this->WIDTH = WIDTH_;
