@@ -5,13 +5,15 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-#include <SFML/Window.hpp>
 
 class Ui {
+
     private:
     uint16_t HEIGHT, WIDTH;
     const char livingCell = *"▓▓";
     const char deadCell = *"░░";
+
+
     public:
     sf::RenderWindow window; // changed this
     Ui();
@@ -25,7 +27,6 @@ class Ui {
 
     void createWindow();
     void showWindow();
-    // void showMatrice(Matrice mat);
 };
 
 
