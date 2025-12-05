@@ -10,6 +10,7 @@
 #include "Cell.h"
 #include "Console.h"
 #include "NextGen.h"
+#include "Ui.h"
 
 using namespace std;
 

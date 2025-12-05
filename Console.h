@@ -1,5 +1,4 @@
-#ifndef TEST_CONSOLE_H
-#define TEST_CONSOLE_H
+#pragma once
 #include "Matrice.h"
 #include <vector>
 #include <string>
@@ -15,4 +14,4 @@ class Console {
 };
 
 
-#endif //TEST_CONSOLE_H
+

@@ -1,5 +1,4 @@
-#ifndef POO_UI_H
-#define POO_UI_H
+#pragma once
 #include <cstdint>
 // #include "Matrice.h"
 #include <SFML/Graphics.hpp>
@@ -31,4 +30,3 @@ class Ui {
 };
 
 
-#endif //POO_UI_H

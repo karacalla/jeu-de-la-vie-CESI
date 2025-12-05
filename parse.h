@@ -1,5 +1,4 @@
-#ifndef POO_PARSE_H
-#define POO_PARSE_H
+#pragma once
 
 #include <fstream>
 #include <vector>

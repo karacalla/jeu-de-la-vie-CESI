@@ -1,24 +1,23 @@
-#ifndef TEST_MATRICE_H
-#define TEST_MATRICE_H
+#pragma once
 #include <vector>
+#include <string>
+#include "Cell.h"
 using namespace std;
 
 class Matrice {
     private:
     int row, column;
     public:
-    vector<vector<int>> matrice;
-    vector<vector<int>> buffer;
+    vector<vector<Cell>> matrice;
+    vector<vector<Cell>> buffer;
 
-    Matrice();
+    Matrice(string fileName);
     ~Matrice();
 
-    const int getRow();
-    const int getColumn();
+    int getRow() const;
+    int getColumn() const;
 
     void createMatrice();
     void saveMatrice();
+    void copy();
 };
-
-
-#endif //TEST_MATRICE_H

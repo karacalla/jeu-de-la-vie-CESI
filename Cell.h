@@ -1,5 +1,4 @@
-#ifndef JEU_DE_LA_VIE_CELL_H
-#define JEU_DE_LA_VIE_CELL_H
+#pragma once 
 
 
 class Cell {
@@ -20,4 +19,3 @@ public:
 };
 
 
-#endif //JEU_DE_LA_VIE_CELL_H
