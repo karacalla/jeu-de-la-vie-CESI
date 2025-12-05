@@ -1,22 +1,23 @@
-#ifndef TEST_CELL_H
-#define TEST_CELL_H
-#include <cstdlib>
+#ifndef JEU_DE_LA_VIE_CELL_H
+#define JEU_DE_LA_VIE_CELL_H
+
 
 class Cell {
-    private:
-    bool state;
-    int x, y;
+private:
+    int state, posX, posY;
     bool lockState;
-    public:
+public:
     Cell();
+    Cell(int state_, int posX_, int posY_);
     ~Cell();
-    void setState(bool state_);
-    bool getState();
-    void setPos(int x_, int y_);
-    int getPosX() const;
-    int getPosY() const;
 
+    void setState(int state);
+
+    [[nodiscard]] int getState () const;
+    [[nodiscard]] int getPosX () const;
+    [[nodiscard]] int getPosY() const;
+    [[nodiscard]] bool getLockState() const;
 };
 
 
-#endif //TEST_CELL_H
+#endif //JEU_DE_LA_VIE_CELL_H
