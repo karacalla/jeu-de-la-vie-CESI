@@ -1,23 +1,24 @@
-#ifndef POO_MATRICE_H
-#define POO_MATRICE_H
-#include <iostream>
-#include "Cell.h"
-
+#ifndef TEST_MATRICE_H
+#define TEST_MATRICE_H
+#include <vector>
+using namespace std;
 
 class Matrice {
     private:
     int row, column;
-    //Cell matrice[];
     public:
+    vector<vector<int>> matrice;
+    vector<vector<int>> buffer;
+
     Matrice();
-    Matrice(int row_, int column_);
     ~Matrice();
-    void setRow(int row_);
+
     const int getRow();
-    void setColumn(int column_);
     const int getColumn();
-    void createMatrix(char* fileName);
+
+    void createMatrice();
+    void saveMatrice();
 };
 
 
-#endif //POO_MATRICE_H
+#endif //TEST_MATRICE_H
