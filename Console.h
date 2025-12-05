@@ -1,15 +1,12 @@
 #pragma once
 #include "Matrice.h"
-#include <vector>
-#include <string>
-#include <iostream>
-#include <fstream>
 
 class Console {
-    public:
+public:
     Console();
     ~Console();
-    void displayConsole(Matrice mat);
+
+    void drawConsole(Matrice mat);
     void clearConsole();
 };
 
