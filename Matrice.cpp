@@ -1,30 +1,46 @@
 #include "Matrice.h"
+#include "Rules.h"
+#include <vector>
+#include <iostream>
+#include <fstream>
+using namespace std;
 
-Matrice::Matrice() {}
+Matrice::Matrice() {createMatrice();}
 
-Matrice::Matrice(int row_, int column_) : row(row_), column(column_){}
+void Matrice::createMatrice() {
+    ifstream file(&INIT_FILE_PATH);
+    if (!file) {
+        cerr << "Fichier initial introuvable" << endl;
+        return;
+    }
+    file >> row >> column;
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < column; j++) {
+            file >> matrice[i][j];
+        }
+    }
+    buffer = matrice;
+    file.close();
+}
 
 Matrice::~Matrice() {}
 
-void Matrice::setRow(int row_) {this->row = row_;}
-
-void Matrice::setColumn(int column_) {this->column = column_;}
-
+const int Matrice::getColumn() {return this->column;}
 const int Matrice::getRow() {return this->row;}
 
-const int Matrice::getColumn() {return this->column;}
-
-void Matrice::createMatrix(char *fileName) {
-    /* Ouverture du fichier
-     * [type] file = ...;
-     * setRow(file[indice]);
-     * setColumn(file[indice]);
-     * Lecture du fichier
-     * Parcours du fichier :
-     * for (int i = 0; i = this->row; i++) {
-     *      for (int j = 0; j = this->column; i++) {
-     *          cellule.setState(file[indice]);
-     *      }
-     * }
-     */
+void Matrice::saveMatrice() {
+    ofstream saveFile(&SAVE_FILE_PATH);
+    if (!saveFile) {
+        cerr << "Fichier de sauvegarde introuvable" << endl;
+        return;
+    }
+    for (int i = 0; i < row; i++) {
+        for (int j = 0; j < column; j++) {
+            saveFile << matrice[i][j];
+            if (j < column - 1) {
+                saveFile << ' ';
+            }
+        } saveFile << endl;
+    }
+    saveFile.close();
 }
