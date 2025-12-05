@@ -11,7 +11,10 @@ Cell::Cell(int state_, int posX_, int posY_) {
     } else if (state_ == 3) {
         this->state = 1;
         this->lockState = true;
-    } else {this->lockState = false;}
+    } else {
+        this->state = state_;
+        this->lockState = false;
+    }
 }
 
 Cell::~Cell() =default;
