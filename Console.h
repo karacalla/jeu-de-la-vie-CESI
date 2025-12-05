@@ -1,18 +1,21 @@
-#ifndef TEST_CONSOLE_H
-#define TEST_CONSOLE_H
+#ifndef JEU_DE_LA_VIE_CONSOLE_H
+#define JEU_DE_LA_VIE_CONSOLE_H
 #include "Matrice.h"
-#include <vector>
-#include <string>
+#include "Cell.h"
+#include "Rules.h"
+#include "Config.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 class Console {
-    public:
+public:
     Console();
     ~Console();
-    void displayConsole(Matrice mat);
+
+    void drawConsole(Matrice mat);
     void clearConsole();
 };
 
 
-#endif //TEST_CONSOLE_H
+#endif //JEU_DE_LA_VIE_CONSOLE_H
