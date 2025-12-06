@@ -1,41 +1,38 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
-#include "Rules.h"
+#include "Game.h"
 #include "Matrice.h"
 #include "Cell.h"
-#include "Console.h"
-#include "NextGen.h"
-#include "Ui.h"
+#include "Rules.h"
+#include "Config.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <ctime>
 
-using namespace std;
 
 int main() {
-    Ui HUD;
-    Console CON;
-    Matrice mat;
-    Cell cell;
-    HUD.showWindow();
-    while (HUD.window.isOpen()) {
-        while (const std::optional event = HUD.window.pollEvent()) {
-            if (event->is<sf::Event::Closed>()) {
-                HUD.window.close();
-            }
-            if (UI == true) {
-                HUD.window.draw(mat);
-            } else if (CONSOLE == true) {
-                CON.displayConsole(mat);
-            }
-            if (cptIterations == NB_ITERATIONS) {
-                mat.saveMatrice();
-                cptIterations = 0;
-            }
-            nextGeneration(mat, cell);
-            cptIterations++;
+    Game game("C:\\Users\\arthu\\CLionProjects\\Jeu de la vie\\matrice", 1000);
+    // Plus besoin de passer cellSize !
+
+    while (game.isRunning() && (NB_ITERATIONS == 0 || cptIterations < NB_ITERATIONS)) {
+        clock_t begin = clock();
+
+        game.draw();
+
+        game.nextGeneration();
+
+        if (cptIterations % NB_IT_SAVE == 0) {
+            game.save();
+        }
+
+        cptIterations++;
+
+        if (clock () - begin < TIME) {
+            while (clock () - begin < TIME) {}
         }
     }
+
+    return 0;
 }
