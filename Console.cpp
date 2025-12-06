@@ -1,31 +1,33 @@
 #include "Console.h"
-#include <vector>
-#include <string>
+#include "Matrice.h"
+#include "Cell.h"
+#include "Config.h"
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
+#include <string>
 using namespace std;
 
-Console::Console() {}
+Console::Console() = default;
 
-Console::~Console() {}
+Console::~Console() = default;
 
-void Console::displayConsole(Matrice mat) {
+void Console::drawConsole(Matrice mat) {
+    std::cout << cptIterations << std::endl;
     for (int i = 0; i < mat.getRow(); i++) {
         for (int j = 0; j < mat.getColumn(); j++) {
-            if (mat.matrice[i][j] == 0) {
-                cout << "  ";
-            } else {
-                cout << "██";
+            if (mat.matrice[i][j].getState() == 0 || mat.matrice[i][j].getState() == 2) {
+                std::cout << ".";
+            } else if (mat.matrice[i][j].getState() == 1 || mat.matrice[i][j].getState() == 3) {
+                std::cout << "#";
             }
-        } cout << endl;
+        } std::cout << endl;
     }
 }
 
 void Console::clearConsole() {
-    #ifdef _WIN32
+    if (WIN32) {
         system("cls");
-    #else
+    } else {
         system("clear");
-    #endif
+    }
 }
