@@ -1,5 +1,4 @@
 #include "Matrice.h"
-#include "Cell.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -7,7 +6,7 @@
 
 using namespace std;
 
-Matrice::Matrice(std::string fileName) {
+Matrice::Matrice(string(fileName)) {
     ifstream file(fileName);
     if (!file) {
         cerr << "Fichier initial introuvable" << endl;
