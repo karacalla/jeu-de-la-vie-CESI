@@ -1,32 +1,20 @@
 #pragma once
-#include <cstdint>
-// #include "Matrice.h"
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
+#include "Matrice.h"
 
 class Ui {
+private:
+    sf::RenderWindow window;
+    int cellSize;
+    sf::RectangleShape cellShape;
 
-    private:
-    uint16_t HEIGHT, WIDTH, CARREAU;
-    const char livingCell = *"▓▓";
-    const char deadCell = *"░░";
-    void generateSize();
-
-
-    public:
-    sf::RenderWindow window; // changed this
-    Ui();
-    Ui(uint16_t HEIGHT_, uint16_t WIDTH_);
+public:
+    Ui(int width, int height, int cellSize_);
     ~Ui();
 
-    void setSize(uint16_t HEIGHT_, uint16_t WIDTH_);
-
-    const uint16_t getHeight() const;
-    const uint16_t getWidth() const;
-
-    void createWindow();
-    void showWindow();
+    void drawUi(Matrice& mat);
+    bool isOpen();
+    void handleEvents();
+    void clear();
+    void display();
 };
-
-
