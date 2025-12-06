@@ -1,94 +1,68 @@
 #include "Ui.h"
-#include <cstdint>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <iostream>
 
-
-Ui::Ui() {
-    std::cout << "[Ui] Constructeur par défaut\n";
-    generateSize();   
-    createWindow();
-    std::cout << "[Ui] Rejoice! Window created\n";
+Ui::Ui(int width, int height, int cellSize_)
+    : window(sf::VideoMode(width * cellSize_, height * cellSize_), "Jeu de la Vie Groupe D"),
+      cellSize(cellSize_),
+      cellShape(sf::Vector2f(cellSize_ - 1.0f, cellSize_ - 1.0f)) {
+    cellShape.setFillColor(sf::Color::White);
 }
-
-// cleaned this up
-
 
 Ui::~Ui() {
-    std::cout << "[Ui] Destructeur appelé\n";
+    if (window.isOpen()) {
+        window.close();
+    }
 }
 
-// cleaned this up too 
+void Ui::drawUi(Matrice& mat) {
+    window.clear(sf::Color::Black);
 
+    for (int i = 0; i < mat.getRow(); i++) {
+        for (int j = 0; j < mat.getColumn(); j++) {
+            if (mat.matrice[i][j].getState() == 1) {
+                cellShape.setFillColor(sf::Color::White);
+                cellShape.setPosition(j * cellSize, i * cellSize);
+                window.draw(cellShape);
+            }
 
-void Ui::createWindow() {
-    std::cout << "[Ui] Création de la fenêtre... H=" << this->HEIGHT << " W=" << this->WIDTH << "\n";
-
-    window.create(
-        sf::VideoMode({this->WIDTH, this->HEIGHT}),
-        "Jeu de la vie Groupe D",
-        sf::Style::Close | sf::Style::Titlebar,
-        sf::State::Windowed
-    );
-
-    if (window.isOpen())
-        std::cout << "[Ui] Fenêtre créée avec succès !\n";
-    else
-        std::cout << "[Ui] Échec de la création de la fenêtre !!\n";
-}
-
-void Ui::showWindow() {
-    std::cout << "[Ui] Entrée dans la boucle showWindow()...\n";
-
-    while (window.isOpen()) {
-
-        while (auto eventOpt = window.pollEvent()) {
-            //removed bloat
-
-            const sf::Event& event = *eventOpt;
-
-            if (event.is<sf::Event::Closed>()) {
-                std::cout << "[Ui] Événement : fermeture de la fenêtre\n";
-                window.close();
-            } else {
-                //removed bloat
+            if (mat.matrice[i][j].getLockState()) {
+                if (mat.matrice[i][j].getState() == 1) {
+                    cellShape.setFillColor(sf::Color::Green);
+                } else {
+                    cellShape.setFillColor(sf::Color::Blue);
+                }
+                cellShape.setPosition(j * cellSize, i * cellSize);
+                window.draw(cellShape);
             }
         }
-
-        window.display();
     }
 
-    std::cout << "[Ui] Sortie de la boucle showWindow() (fenêtre fermée)\n";
+    window.display();
 }
 
+bool Ui::isOpen() {
+    return window.isOpen();
+}
 
-void Ui::generateSize() {
-    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
-
-    unsigned int screenWidth  = desktop.size.x;
-    unsigned int screenHeight = desktop.size.y;
-
-    // DIMENSIONS DE LA MATRICE à intégrer
-    unsigned int longueur = 10;
-    unsigned int largeur = 5;
-
-
-
-
-    WIDTH  = static_cast<uint16_t>(screenWidth  * 0.8f);
-    HEIGHT  = static_cast<uint16_t>(screenHeight  * 0.8f);
-
-    if (longueur > largeur) {
-        HEIGHT = static_cast<uint16_t>((float)largeur / longueur * WIDTH);
-    } else {
-
-        WIDTH = static_cast<uint16_t>((float)longueur / largeur * HEIGHT);
+void Ui::handleEvents() {
+    sf::Event event;
+    while (window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            window.close();
+        }
+        // Touche Espace pour pause (optionnel)
+        if (event.type == sf::Event::KeyPressed) {
+            if (event.key.code == sf::Keyboard::Escape) {
+                window.close();
+            }
+        }
     }
+}
 
-    CARREAU = WIDTH / largeur;
+void Ui::clear() {
+    window.clear(sf::Color::Black);
+}
 
-    std::cout << "[Ui] Taille magique de l'écran: H=" << HEIGHT 
-              << " W=" << WIDTH << " C=" << CARREAU << "\n";
+void Ui::display() {
+    window.display();
 }
