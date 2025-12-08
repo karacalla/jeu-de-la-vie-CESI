@@ -25,9 +25,5 @@ void Console::drawConsole(Matrice mat) {
 }
 
 void Console::clearConsole() {
-    if (WIN32) {
-        system("cls");
-    } else {
-        system("clear");
-    }
+    system("clear");
 }
